@@ -1,0 +1,231 @@
+/********Общие стили*************/
+
+.main{
+	background-color:#EFEEEE;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: lighter;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+
+/********Вопрос*************/
+
+.count-wrap{
+	position: absolute;
+	font-family:'PT Mono', monospace; 
+	left:15px;
+	top:5px;
+
+}
+
+.logo-container{
+	position: absolute;
+	right:15px;
+	top:5px;
+	font-family:'PT Mono', monospace; 
+}
+
+.question-container{
+	width: 100%;
+	height: 50vh;
+	position: relative;
+		
+}
+
+.question-wrap{
+	font-size: 60px;
+	color: #1089FF;	
+	position: absolute;
+	top: 50px;
+	left: 230px;
+	width: 80%;
+	line-height: 72px;
+}
+
+
+
+/********Ответ*************/
+
+.answer-conteiner {
+	visibility: visible;
+	width:100%;
+	height: 25vh;
+	position: relative;
+			
+}
+
+
+.answer-wrap{
+	font-size: 60px;
+	color: #1089FF;	
+	position: absolute;
+	left: 230px;
+	top: 50px;
+	width: 70%;
+}
+
+
+.answer-wrap p{
+	margin: 0;
+	display: inline-block;
+}
+
+.answer-wrap input{
+	margin: 0;
+	display: inline-block;
+	border: 0;
+	border-bottom:2px solid #1089FF;
+  	outline: 0;
+  	font-size: 60px;
+  	color: #1089FF;
+  	background: transparent;
+  	margin-left: 0.5em;
+  	width: 25%;
+ 
+}
+
+.answer-wrap button{
+	visibility: hidden;
+ 
+}
+
+.answer-wrap input:focus{
+	border: 0;
+}
+
+
+
+/********Футер*************/
+
+
+.main-footer{
+	width:100%;
+	height: 25vh;
+	background-color: #FFFFFF;
+	position: relative;
+	color: #1089FF;	
+
+}
+
+
+
+.result{
+	visibility: visible;
+	position: absolute;
+	width: 80%;
+	height: 80%;
+	left: 15%;
+
+}
+
+
+.arrow-wrap{
+	visibility: visible;
+	position: absolute;
+ 	display: inline-block;
+ 	position: absolute;
+ 	top: 35%;
+ 	right: 10%;
+ 	cursor: pointer;
+ 	z-index: 3;
+ 	
+}
+
+
+.arrow-wrap-blocked{
+	visibility: visible;
+	position: absolute;
+ 	display: inline-block;
+ 	position: absolute;
+ 	top: 35%;
+ 	right: 10%;
+ 	cursor: pointer;
+ 	z-index: 3;
+ 	color:#D8D8D8;
+ 	pointer-events: none;
+}
+
+
+
+
+
+.right-arrow{
+	border: 2px solid #23374D;
+ 	border-width: 0px 3px 3px 0px;
+ 	transform: rotate(-45deg);
+ 	position: absolute;
+ 	padding: 25px;
+ 	right: -15%;
+ 
+ 	       
+}
+
+
+
+
+.right-arrow-blocked{
+	border: 2px solid #D8D8D8;
+	border-width: 0px 3px 3px 0px;
+ 	transform: rotate(-45deg);
+ 	position: absolute;
+ 	padding: 25px;
+ 	right: -15%;
+ 	pointer-events: none;
+ 	visibility: visible;
+ 	
+}
+
+
+
+.win-wrap{
+	position: absolute;
+	left: 20%;
+	top: 50px;
+
+	
+}
+	
+.win-wrap p{
+	font-size: 68px;
+	color: #1089FF;	
+	margin: 0;
+	padding: 0;
+
+	
+
+}
+
+.img-wrap .img-positive{
+	position: absolute;
+	left: 60%;
+	top: 60px;
+
+}
+
+.img-wrap .img-negative{
+	position: absolute;
+	left: 45%;
+	top: 80px;
+
+}
+
+
+
+.img-wrap img{
+	height: 60px;
+	width: 60px;
+}
+
+.img-positive{
+	visibility: hidden;
+}
+
+.img-negative{
+	visibility: hidden;
+}
+
+

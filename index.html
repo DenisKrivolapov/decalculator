@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Декалькулятор</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,700|PT+Mono&display=swap" rel="stylesheet">
+</head>
+<body class="main">
+	<div class="question-container">
+		<div class = "logo-container">
+			<p>Декалькулятор</p>
+		</div>
+
+		<div class="question-wrap">
+			<p id = "question">Что-то пошло не так</p>
+		</div>
+		<div class="count-wrap">
+			<p id = "counter">Вопрос 0/10</p>
+			<p id = "correct">Правильных ответов: 0</p>
+		</div>
+	</div>
+
+	<div class = "answer-conteiner">
+		<div class = "answer-wrap">
+			<p id ="users_answer">Ответ =</p>
+			<input class="users_input" type="text" name="text" id="answer">
+			<button id ="submit" onclick="checkAnswer()">Ответ</button>
+		</div>
+	</div>
+
+	<footer class ="main-footer">
+		<div  class = "arrow-wrap-blocked" onclick = "genRandQuest()">
+			<div class = "right-arrow-blocked" id = "right-arrow"></div>
+			<p>Следующий вопрос</p>
+		</div>
+		<div class = "result">
+			<div class="win-wrap">
+				<p id = "win">Жду ответик</p>
+			</div>
+			<div class="img-wrap" id="thumb-up">
+				<div class ="img-positive">
+					<img src="img/thumb-vector-emoji.png" alt="палец вверх!">
+				</div>
+				<div class = "img-negative">
+					<img src="img/thump-down.png" alt="палец вниз!">
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+<script src="js/main.js"></script>
+</body>
+</html>
