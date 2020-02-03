@@ -1,6 +1,6 @@
-var mainQuestList = [genCR, test, test2, test3, test4, test5, test6, test7, test8];	
+var mainQuestList = [genCR, genCAC, test2, test3, test4, test5, test6, test7, test8, test10];	
 var GodObj = {};
-var counter = 9;
+var counter = 0;
 var goal = 0;
 
 
@@ -20,13 +20,17 @@ function showGoal(){
 
 
 /////Вопрос 2///////
-function test(){
-	var cr = document.getElementById('question');
-	var answer = 10;
+function genCAC(){
+	var cac = document.getElementById('question');
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 2";
+	var max = 400000;
+	var min = 250000;
+	var costs = Math.floor(Math.random() * (400000 - 250000 + 1) + 250000);
+	var buyers = Math.floor(Math.random() * (3000 - 2000 + 1) + 2000);
+	var answer = Math.floor((costs/buyers)/2);
+	cac.innerHTML = "В июле и в августе потратили <strong>" + costs + "</strong> рублей на контекстную рекламу и привлекли <strong>" + buyers + "</strong> покупателей. Какой среднемесячный CAC?" ;
 	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
+	users_answer.innerHTML = "CAC = "
 	console.log("ответ: " + answer);
 	
 
@@ -143,6 +147,19 @@ function test8(){
 
 };
 
+function test10(){
+	var cr = document.getElementById('question');
+	var answer = 10;
+	var users_answer = document.getElementById('users_answer');
+	cr.innerHTML = "вопрос 9";
+	GodObj.ans = answer;
+	users_answer.innerHTML = "Ответик = "
+	console.log("ответ: " + answer);
+
+
+};
+
+
 
 
 
@@ -150,59 +167,6 @@ function test8(){
 
 /////Выбор вопроса//////
 
-function genRandQuest(){			
-	document.getElementById('win').innerHTML = "Жду ответик"
-	var randtotal = Math.floor(Math.random() * mainQuestList.length);
-	var callback = mainQuestList[randtotal];
-	var index = mainQuestList.indexOf(randtotal);
-	callback();
-	clear();
-	showCount();
-	mainQuestList.splice(index, 1);
-}
-
-function removeFromList(){
-	var mainQuestList = [genCR, test];
-
-}
-
-/////Проверка ответа//////
-
-function checkAnswer(){
-	var myAnswer = GodObj.ans;
-	var user_answer = document.getElementById('answer');
-	var win = document.getElementById('win');
-	var thumpUp = document.getElementsByClassName("img-positive");
-	var thumpDown = document.getElementsByClassName("img-negative");
-	if (user_answer.value == myAnswer){
-		win.innerHTML = "Так держать!";
-		goal ++;
-		counter ++;
-		console.log ("Правильных ответов: " + goal);
-		console.log ("Количество вопросов: " + counter);
-		for (i of thumpUp){
-			i.style.visibility = "visible";
-		}
-	}else{
-		win.innerHTML = "неа :(";
-		for (z of thumpDown){
-			z.style.visibility = "visible";
-			counter ++;
-			console.log ("Количество вопросов: " + counter);
-
-			}
-	 	}
-	 checkWin();
-	 checkLose();
-	 showGoal();
-	 moveToNext()
-
-
-
-	}
-
-
-//////Переход к следующему вопросу/////////////
 
 function moveToNext(){
 	var text = document.getElementsByClassName("arrow-wrap-blocked");
@@ -215,6 +179,76 @@ function moveToNext(){
 	}
 
 }
+
+
+function genRandQuest(){
+		var list = document.getElementById("list");
+		list.innerHTML = mainQuestList;
+		var animation = document.getElementsByClassName("question-wrap")[0];
+		animation.classList.toggle('fade');
+		setTimeout(function animdelay(){animation.classList.remove('fade')}, 1000);
+		document.getElementById('win').innerHTML = "Жду ответик"
+		var randtotal = Math.floor(Math.random() * mainQuestList.length);
+		// console.log(randtotal);
+		var callback = mainQuestList[randtotal];
+		var index = mainQuestList.indexOf(callback);
+		console.log(index);
+		mainQuestList.splice(index, 1);	
+		callback();
+		clear();
+		showCount();
+
+
+
+	
+}
+
+
+// function startAnim(){
+// 	var click = document.getElementsByClassName("arrow-wrap-blocked")[0];
+// 	click.onclick = function animate(){
+// 		var animation = document.getElementsByClassName("question-wrap")[0];
+// 		animation.classList.toggle('fade');
+// 	}
+// }	
+
+
+
+/////Проверка ответа//////
+
+
+
+ function checkAnswer(){
+				var myAnswer = GodObj.ans;
+				var user_answer = document.getElementById('answer');
+				var win = document.getElementById('win');
+				var thumpUp = document.getElementsByClassName("img-positive");
+				var thumpDown = document.getElementsByClassName("img-negative");
+				if (user_answer.value == myAnswer){
+					win.innerHTML = "Так держать!";
+					goal ++;
+					counter ++;
+					console.log ("Правильных ответов: " + goal);
+					console.log ("Количество вопросов: " + counter);
+					for (i of thumpUp){
+						i.style.visibility = "visible";
+					}
+				}else{
+					win.innerHTML = "неа :(";
+					for (z of thumpDown){
+						z.style.visibility = "visible";
+						counter ++;
+
+						}
+				 	}
+				 checkWin();
+				 checkLose();
+				 showGoal();
+				 moveToNext()
+ }
+
+
+
 
 
 
@@ -325,6 +359,8 @@ addEventListener("keyup", function(event) {
 //////Попробовать еще раз///////////
 
 
-window.onload = genRandQuest;
+window.onload = genRandQuest
+
+
 
 

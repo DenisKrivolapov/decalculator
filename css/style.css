@@ -37,13 +37,19 @@
 }
 
 .question-wrap{
-	font-size: 60px;
+	font-size: 52px;
 	color: #1089FF;	
 	position: absolute;
 	top: 50px;
 	left: 230px;
 	width: 80%;
 	line-height: 72px;
+
+
+}
+
+.question-wrap.fade {
+  	animation: fadein 1s;
 }
 
 
@@ -229,3 +235,13 @@
 }
 
 
+
+@keyframes fadein {
+	from {
+        opacity:0;
+    }
+
+    to {
+        opacity:1;
+    }
+}
