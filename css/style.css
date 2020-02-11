@@ -33,6 +33,7 @@
 	width: 100%;
 	height: 50vh;
 	position: relative;
+	
 		
 }
 
@@ -44,6 +45,9 @@
 	left: 230px;
 	width: 80%;
 	line-height: 72px;
+	overflow: scroll;
+	height: 50vh;
+
 
 
 }
@@ -72,15 +76,17 @@
 	left: 230px;
 	top: 50px;
 	width: 70%;
+
 }
 
 
 .answer-wrap p{
 	margin: 0;
 	display: inline-block;
+
 }
 
-.answer-wrap input{
+.users_input{
 	margin: 0;
 	display: inline-block;
 	border: 0;
@@ -91,6 +97,7 @@
   	background: transparent;
   	margin-left: 0.5em;
   	width: 25%;
+  	visibility: visible;
  
 }
 
@@ -102,6 +109,24 @@
 .answer-wrap input:focus{
 	border: 0;
 }
+
+.question-drop{
+	visibility: hidden;
+	position: absolute;
+	left: 350px;
+	top:20px;
+	border: 0;
+	outline: 0;
+	font-size: 40px;
+	color: #1089FF;
+	background: transparent;
+	word-spacing: 20px;
+}
+
+
+
+
+
 
 
 

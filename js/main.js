@@ -1,4 +1,4 @@
-var mainQuestList = [genCR, genCAC, test2, test3, test4, test5, test6, test7, test8, test10];	
+var mainQuestList = [genCR, genCAC, genARPPU, genLTVvsCAC, genROI, genARPC, genWAU, genGrossProf, genMarketfit, genCogorts];	
 var GodObj = {};
 var counter = 0;
 var goal = 0;
@@ -23,8 +23,8 @@ function showGoal(){
 function genCAC(){
 	var cac = document.getElementById('question');
 	var users_answer = document.getElementById('users_answer');
-	var max = 400000;
-	var min = 250000;
+	// var max = 400000;
+	// var min = 250000;
 	var costs = Math.floor(Math.random() * (400000 - 250000 + 1) + 250000);
 	var buyers = Math.floor(Math.random() * (3000 - 2000 + 1) + 2000);
 	var answer = Math.floor((costs/buyers)/2);
@@ -54,13 +54,16 @@ function genCR(){
 
 
 /////Вопрос 3///////
-function test2(){
+function genARPPU(){
 	var cr = document.getElementById('question');
-	var answer = 10;
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 3";
+	var revenue = Math.floor(Math.random() * (200000 - 180000 + 1) + 180000);
+	var orders = Math.floor(Math.random() * (2000 - 1000 + 1) + 1000);
+	var inner_costs = Math.floor(Math.random() * (300 - 99 + 1) + 99);
+	var answer = Math.floor((revenue/orders)-inner_costs);
+	cr.innerHTML = "Выручка за период составила <strong>" + revenue + "</strong> при <strong>" + orders +"</strong> заказах, издержки на один заказ составляют <strong>" + inner_costs +"</strong> руб. Посчитайте средний доход на платящего пользователя.";
 	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
+	users_answer.innerHTML = "ARPPU = "
 	console.log("ответ: " + answer);
 
 
@@ -68,93 +71,164 @@ function test2(){
 
 
 /////Вопрос 4///////
-function test3(){
-	var cr = document.getElementById('question');
-	var answer = 10;
+function genLTVvsCAC(){
+	var question = document.getElementById('question');
+	var purch = Math.floor(Math.random() * (10 - 1 + 1) + 1);
+	var AvP = Math.floor(Math.random() * (10000 - 500 + 1) + 500);
+	var LTV = purch * AvP;
+	var CAC = Math.floor(Math.random() * (500000 - 100 + 1) + 100);
+	var answer = function(){
+		if (LTV >= CAC){
+			i = LTV/CAC;
+			answer = parseFloat(i.toFixed(2)) + ":1";
+			return answer;
+		}else{
+			i = CAC/LTV;
+			answer = "1:" + parseFloat(i.toFixed(2));
+			return answer;
+		}
+	}
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 4";
-	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
-	console.log("ответ: " + answer);
+	question.innerHTML = "Каждый пользовател совершает <strong>" + purch + "</strong> покупок за период, при среднем чеке в<strong> " + AvP + "</strong>. Стоимость привлечения одного пользователя — <strong>" + CAC +"</strong>";
+	GodObj.ans = answer();
+	users_answer.innerHTML = "LTV к CAC = "
+	console.log("ответ: " + answer + " LTV: " + LTV + " CAC: " + CAC);
 
 
 };
 
 /////Вопрос 5///////
-function test4(){
-	var cr = document.getElementById('question');
-	var answer = 10;
+function genROI(){
+	var question = document.getElementById('question');
+	var cost = Math.floor(Math.random() * (8000 - 100 + 1) + 100);
+	var buys = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+	var AvP = Math.floor(Math.random() * (1000 - 1 + 1) + 1);
+	var answer = Math.floor(((buys*AvP)/cost)*100) + "%";
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 5";
+	question.innerHTML = "Вы потратили на рекламную компанию букетов <strong>" + cost + "</strong> руб. Было продано <strong>" + buys + "</strong> букетов, по <strong>" + AvP + "</strong> руб. Какая окупаемость вложений?" ;
 	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
+	users_answer.innerHTML = "ROI (в процентах) = ";
 	console.log("ответ: " + answer);
 
 
 };
 
 
-/////Вопрос 6///////
-function test5(){
-	var cr = document.getElementById('question');
-	var answer = 10;
+/////Вопрос 6 - Средний доход на платящего пользователя///////
+function genARPC(){
+	var question = document.getElementById('question');
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 6";
+	var text = document.getElementById('question')
+	var buys = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+	var AvP = Math.floor(Math.random() * (900 - 800 + 1) + 800);
+	var cogs = Math.floor(Math.random() * (1000 - 900 + 1) + 900);
+	var ARPC = (AvP-cogs) * buys;
+	var new_ARPC = Math.floor(Math.random() * (1800 - 1200 + 1) + 1200);
+	var answer = Math.floor(((new_ARPC/buys) + cogs) - AvP);
 	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
+	question.innerHTML = "Cредний чек <strong>" + AvP + "</strong> руб. при <strong>" + buys + "</strong> покупках на пользователя потери (<strong>" + ARPC + "</strong> руб.) Зная себестоимость 1-й продажи — <strong>" + cogs + "</strong> руб. на сколько увеличить средний чек, чтобы APRC стал <strong>" + new_ARPC + "</strong>";
+	users_answer.innerHTML = "AvP = "
 	console.log("ответ: " + answer);
 
 
 };
 
 /////Вопрос 7///////
-function test6(){
-	var cr = document.getElementById('question');
-	var answer = 10;
+function genWAU(){
+	var question = document.getElementById('question');
+	var WAU = Math.floor(Math.random() * (10000 - 5000 + 1) + 5000);
+	var perc = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+	var i = WAU - ((WAU * perc)/100);
+	var answer = parseFloat(i.toFixed(2));
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 7";
+	question.innerHTML = "У Saas проекта WAU<strong> " + WAU +  " </strong>человек.<strong> "+ perc + "%</strong> из них заходили больше одного раза. Какой DAU у проекта, при допущении, что уникальные пользователи равномерно распределены в течение недели?";
 	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
+	users_answer.innerHTML = "DAU (X.XX) = "
 	console.log("ответ: " + answer);
-
-
 };
 
 
 /////Вопрос 8///////
-function test7(){
-	var cr = document.getElementById('question');
-	var answer = 10;
+function genGrossProf(){
+	var question = document.getElementById('question');
+	var UA = Math.floor(Math.random() * (20000 - 10000 + 1) + 10000);
+	var ARPU = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+	var CPA = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+	var answer = UA * (ARPU - CPA);
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 7";
+    question.innerHTML = "Количество привлеченных пользователей <strong>" + UA + "</strong>. При стоимости привлечения одного пользователя в <strong>" +CPA+ "</strong> руб. и ARPU = <strong>" +ARPU+"</strong> руб. ,посчитайте прибыль за вычетом фикс. расходов.";
 	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
+	users_answer.innerHTML = "Gross Profit = "
 	console.log("ответ: " + answer);
 
 
 };
 
 /////Вопрос 9///////
-function test8(){
-	var cr = document.getElementById('question');
-	var answer = 10;
+function genMarketfit(user_score){
+	var question = document.getElementById('question');
+	var input = document.getElementsByClassName("users_input")[0];
+	var drop = document.getElementById('usersDrop');
+	var user_score = Math.floor(Math.random() * (100 - 1 + 1) + 1);
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 9";
-	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
-	console.log("ответ: " + answer);
+	input.style.visibility ="hidden";
+	drop.style.visibility ="visible";
+	var answer = function(){
+			if(user_score <= 40){
+				var i = "PMF не достигнут";
+				return i;
+			}
+			else if(user_score >= 40 && user_score <= 100){
+				var i = "PMF достигнут";
+				return i;
+			}
+			else{
+				var i = "Неизвестно";
+				return i;
+			}
+	}		
+
+	drop.onchange = function(){
+		var value = drop.options[drop.selectedIndex].value;
+		input.value = value;
+		return value;
+	}
+
+	question.innerHTML = "<strong>" + user_score + "%</strong> пользователей сказали, что буду очень расстроены, если ваш продукт перестанет существовать. Можно ли сказать, что критерий Product Market Fit достигнут?";
+	GodObj.ans = answer();
+	users_answer.innerHTML = "Ответ = "
+	console.log("ответ: " + answer());
+
+}
 
 
-};
 
-function test10(){
-	var cr = document.getElementById('question');
-	var answer = 10;
+
+
+/////Когорты///////
+
+function genCogorts(){
+	var question = document.getElementById('question');
 	var users_answer = document.getElementById('users_answer');
-	cr.innerHTML = "вопрос 9";
-	GodObj.ans = answer;
-	users_answer.innerHTML = "Ответик = "
-	console.log("ответ: " + answer);
+	var cog_1 = Math.floor(Math.random() * (30 - 1 + 1) + 1);
+	var cog_2 = Math.floor(Math.random() * (30 - 1 + 1) + 1);
+	var cog_1_growth = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+	var cog_2_growth = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+	var i = cog_1 + (cog_1_growth * 6);
+	var y = cog_2 + (cog_2_growth * 5);
+	var answer = function(){
+		if(i > y){
+			var answer = i + "%";
+			return answer;
+		}else{
+			var answer = y + "%";
+			return answer;
+ 		}
+	}
+	question.innerHTML = "По результатам РК пользователей разделили на две когорты. 1 — видели рекламу в понедельник, 2 — видели рекламу во вторник. Какой процент установок к концу недели будет у когорты победителя, если в первый день показа <strong>" + cog_1 + "</strong>% из первой когорты установили приложение и <strong>" + cog_2 + "</strong>% из второй. Первая когорта приростает на <strong>" + cog_1_growth + "</strong>% в день, вторая на <strong>" + cog_2_growth +  "</strong>%";
+	GodObj.ans = answer();
+	users_answer.innerHTML = "Ответ в % = "
+	console.log("ответ: " + answer());
 
 
 };
@@ -182,14 +256,11 @@ function moveToNext(){
 
 
 function genRandQuest(){
-		var list = document.getElementById("list");
-		list.innerHTML = mainQuestList;
 		var animation = document.getElementsByClassName("question-wrap")[0];
 		animation.classList.toggle('fade');
 		setTimeout(function animdelay(){animation.classList.remove('fade')}, 1000);
 		document.getElementById('win').innerHTML = "Жду ответик"
 		var randtotal = Math.floor(Math.random() * mainQuestList.length);
-		// console.log(randtotal);
 		var callback = mainQuestList[randtotal];
 		var index = mainQuestList.indexOf(callback);
 		console.log(index);
@@ -197,20 +268,9 @@ function genRandQuest(){
 		callback();
 		clear();
 		showCount();
-
-
-
 	
 }
 
-
-// function startAnim(){
-// 	var click = document.getElementsByClassName("arrow-wrap-blocked")[0];
-// 	click.onclick = function animate(){
-// 		var animation = document.getElementsByClassName("question-wrap")[0];
-// 		animation.classList.toggle('fade');
-// 	}
-// }	
 
 
 
